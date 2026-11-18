@@ -1,0 +1,86 @@
+# =============================================================================
+# polito-llm - requirements.txt
+# Large Language Models for Software Engineering (Politecnico di Torino)
+# Libraries actually imported across lab01..lab10.
+# =============================================================================
+#
+# Install with:
+#   python -m venv .venv
+#   .venv\Scripts\activate          # Windows (PowerShell)
+#   # source .venv/bin/activate     # Linux / macOS
+#   pip install -r requirements.txt
+#
+# For GPU (CUDA) support, install torch/torchvision from the PyTorch index
+# BEFORE the command above (or replace the two lines marked #GPU below):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+#
+# NOTE: torchviz also needs the Graphviz system binaries (not a pip package):
+#   Windows: winget install graphviz  |  Linux: sudo apt install graphviz
+# =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# Deep learning core  (lab01, lab02, lab03, lab04, lab05, lab09, lab10)
+# -----------------------------------------------------------------------------
+torch
+torchvision
+
+# -----------------------------------------------------------------------------
+# HuggingFace ecosystem  (lab02..lab10)
+#   - transformers : tokenizers + models (T5, BERT, GPT-2, Llama, CodeLlama)
+#   - datasets     : load_dataset (lab03, lab04, lab05)
+#   - huggingface_hub : login() / model download (lab04..lab09)
+# -----------------------------------------------------------------------------
+transformers
+datasets
+huggingface_hub
+accelerate          # required by Trainer / device_map in lab04, lab05, lab10
+sentencepiece       # T5 tokenizer (lab02)
+
+# -----------------------------------------------------------------------------
+# Efficient fine-tuning  (lab05)
+#   - peft        : LoRA (LoraConfig, get_peft_model)
+#   - bitsandbytes: 8/4-bit quantization (BitsAndBytesConfig)
+#   NOTE: bitsandbytes is best supported on Linux; on native Windows prefer WSL.
+# -----------------------------------------------------------------------------
+peft
+bitsandbytes
+
+# -----------------------------------------------------------------------------
+# Graphviz visualization of the autograd graph  (lab01)
+# -----------------------------------------------------------------------------
+torchviz
+
+# -----------------------------------------------------------------------------
+# Classic data-science stack  (lab02, lab03, lab06, lab08, lab09)
+# -----------------------------------------------------------------------------
+numpy
+scikit-learn
+matplotlib
+seaborn
+tqdm
+
+# -----------------------------------------------------------------------------
+# RAG / document handling  (lab06)
+#   pymupdf (imported as `pymupdf`, aka fitz), faiss-cpu, openai
+# -----------------------------------------------------------------------------
+pymupdf
+faiss-cpu
+openai
+
+# -----------------------------------------------------------------------------
+# Testing & code metrics  (lab09, lab10)
+#   pytest + ipytest  -> run tests inside notebooks
+#   pytest-cov        -> coverage (coverage run -m pytest / coverage report -m)
+#   radon             -> complexity / raw metrics
+# -----------------------------------------------------------------------------
+pytest
+pytest-cov
+ipytest
+radon
+
+# -----------------------------------------------------------------------------
+# Notebook runtime
+# -----------------------------------------------------------------------------
+ipykernel
+jupyter
